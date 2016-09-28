@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>iscroll实现左右导航滑动效果</title>
+    <meta name="description" content=""/>
+    <style type="text/css">
+        *{padding:0;margin:0}
+        body{max-width: 640px; margin: 0 auto; font-size: 14px; font-family: '微软雅黑'}
+        a{ text-decoration: none; color: #333}
+        #iscroll-nav{width:100%;height: 44px; overflow: hidden;}
+        .ui-nav{height: 44px; border-bottom: 1px solid #dcdcdc; line-height: 44px; text-align: center; background: #eee;}
+        .ui-nav a{ float: left; width: 25%; position: relative;}
+        .ui-nav .cur:after{content: ''; width: 70%; height: 1px; background: #f60; overflow: hidden; position: absolute; left: 50%; top: 44px; z-index: 10; margin-left: -35%; color: #ff2200}
+    </style>
+</head>
+<body>
+      <div id="iscroll-nav">
+          <nav class="ui-nav">
+              <a class="cur" href="javascript:;">导航1</a>
+              <a href="javascript:;">导航2</a>
+              <a href="javascript:;">导航3</a>
+              <a href="javascript:;">导航4</a>
+              <a href="javascript:;">导航5</a>
+              <a href="javascript:;">导航6</a>
+              <a href="javascript:;">导航7</a>
+          </nav>
+      </div>
+      <section id="ui-box">
+           <ul>
+               <li>
+                   <img src="images/">
+                   <div class="right-box">
+                        <h3></h3>
+                   </div>
+               </li>
+           </ul>  
+      </section>
+    <script type="text/javascript" src="../../js/lib/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="../lib/iscroll/iscroll.js"></script>
+    <script type="text/javascript">
+         $(function(){
+            //自适应设置导航元素的初始宽高
+            function setWidth(){
+                var $wd=$('#iscroll-nav').find('a').width(),
+                 $length=$('.ui-nav').find('a').length;
+                 $('.ui-nav').find('a').width($wd);
+                 $('.ui-nav').width($wd*$length);
+            }
+            setWidth();
+            loadedScroll();
+            //滑动组件
+            var myScroll;
+            function loadedScroll() {
+                myScroll = new IScroll('#iscroll-nav', { scrollX: true, scrollY: false, mouseWheel: true });
+            }
+         })  
+
+    </script> 
+</body>
+</html>
